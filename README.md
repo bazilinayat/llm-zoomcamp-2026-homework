@@ -69,7 +69,7 @@ Throughout the course I'll be working with technologies such as:
 
 ## Acknowledgements
 
-A huge thank you to **Alexey Grigorev** and the **DataTalksClub** community for creating and maintaining this incredible free course on practical LLM engineering.
+A huge thank you to @alexeygrigorev **** and the **DataTalksClub** community for creating and maintaining this incredible free course on practical LLM engineering.
 
 ---
 
