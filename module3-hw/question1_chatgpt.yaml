@@ -1,0 +1,79 @@
+# yaml generated from ChatGPT after giving the prompt
+# Create a Kestra flow that loads NYC taxi data from CSV to BigQuery
+
+id: load_nyc_taxi_csv_to_bigquery
+namespace: data.eng
+
+inputs:
+  - id: project_id
+    type: STRING
+    defaults: your-gcp-project
+  - id: gcs_csv_uri
+    type: STRING
+    defaults: gs://your-bucket/nyc_taxi/yellow_tripdata_2024-01.csv
+  - id: bq_table
+    type: STRING
+    defaults: your-gcp-project.nyc_taxi.yellow_trips
+  - id: location
+    type: STRING
+    defaults: US
+
+tasks:
+  - id: load_csv_to_bigquery
+    type: io.kestra.plugin.gcp.bigquery.LoadFromGcs
+    projectId: "{{ inputs.project_id }}"
+    location: "{{ inputs.location }}"
+    from:
+      - "{{ inputs.gcs_csv_uri }}"
+    destinationTable: "{{ inputs.bq_table }}"
+    format: CSV
+    createDisposition: CREATE_IF_NEEDED
+    writeDisposition: WRITE_TRUNCATE
+    autodetect: false
+    ignoreUnknownValues: true
+    maxBadRecords: 10
+    csvOptions:
+      skipLeadingRows: 1
+      fieldDelimiter: ","
+      encoding: UTF-8
+      allowQuotedNewLines: true
+    schema:
+      fields:
+        - name: VendorID
+          type: INT64
+        - name: tpep_pickup_datetime
+          type: TIMESTAMP
+        - name: tpep_dropoff_datetime
+          type: TIMESTAMP
+        - name: passenger_count
+          type: FLOAT64
+        - name: trip_distance
+          type: FLOAT64
+        - name: RatecodeID
+          type: FLOAT64
+        - name: store_and_fwd_flag
+          type: STRING
+        - name: PULocationID
+          type: INT64
+        - name: DOLocationID
+          type: INT64
+        - name: payment_type
+          type: INT64
+        - name: fare_amount
+          type: FLOAT64
+        - name: extra
+          type: FLOAT64
+        - name: mta_tax
+          type: FLOAT64
+        - name: tip_amount
+          type: FLOAT64
+        - name: tolls_amount
+          type: FLOAT64
+        - name: improvement_surcharge
+          type: FLOAT64
+        - name: total_amount
+          type: FLOAT64
+        - name: congestion_surcharge
+          type: FLOAT64
+        - name: Airport_fee
+          type: FLOAT64

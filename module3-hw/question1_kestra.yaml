@@ -1,0 +1,25 @@
+# yaml generated from Kestra after giving the prompt
+# Create a Kestra flow that loads NYC taxi data from CSV to BigQuery
+
+id: load-nyc-taxi-data
+namespace: dev.io.bigquery
+
+description: "Loads NYC taxi data from a public CSV file into BigQuery."
+
+tasks:
+  - id: download_taxi_data
+    type: io.kestra.plugin.core.http.Download
+    uri: https://raw.githubusercontent.com/plotly/datasets/master/2014_nyc_taxi_trips.csv
+    # If the CSV file has a different delimiter, you can specify it in the next task's csvOptions.
+
+  - id: load_to_bigquery
+    type: io.kestra.plugin.gcp.bigquery.Load
+    from: "{{ outputs.download_taxi_data.uri }}"
+    destinationTable: "your_project_id.your_dataset_id.nyc_taxi_trips" # Replace with your actual project, dataset, and table
+    format: CSV
+    csvOptions:
+      skipLeadingRows: 1 # Assuming the CSV has a header row to skip
+    createDisposition: CREATE_IF_NEEDED
+    writeDisposition: WRITE_TRUNCATE
+    # projectId: "your-gcp-project-id" # Uncomment and replace with your GCP Project ID if not set globally
+    # serviceAccount: "{{ secret('GCP_SERVICE_ACCOUNT') }}" # Uncomment and replace with your GCP service account secret
