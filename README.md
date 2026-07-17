@@ -43,8 +43,8 @@ Each module contains:
 | ---------- | ---------------------- | :---------: | ------------------------------------- |
 | ✅ Module 1 | Agentic RAG            |  Completed  | [View README](./module1-hw/README.md) |
 | ✅ Module 2 | Vector Search          |  Completed  | [View README](./module2-hw/README.md) |
-| ⏳ Module 3 | Evaluation             | Coming Soon | -                                     |
-| ⏳ Module 4 | Monitoring             | Coming Soon | -                                     |
+| ✅ Module 3 | Evaluation             |  Completed  | [View README](./module3-hw/README.md) |
+| ✅ Module 4 | Monitoring             |  Completed  | [View README](./module4-hw/README.md) |
 | ⏳ Module 5 | Agents                 | Coming Soon | -                                     |
 | ⏳ Module 6 | Inference Optimization | Coming Soon | -                                     |
 | ⏳ Module 7 | AI Engineering         | Coming Soon | -                                     |
